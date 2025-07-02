@@ -153,12 +153,8 @@ footer {
   }
   
   .reseñas-box {
-    width: 220px;
-    max-height: 300px;
-    bottom: 80px;
+    display: none;
   }
   
-  .reseñas-lista {
-    height: 240px;
-  }
+  
 }
