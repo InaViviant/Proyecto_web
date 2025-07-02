@@ -33,13 +33,16 @@ body {
 }
 
 /* Video principal */
-.video {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 12px;
-  border: 2px solid #278fe4;
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
 }
 
+.video-mobile {
+  display: none;
+}
 /* Footer */
 footer {
   background-color: #333;
@@ -114,22 +117,23 @@ footer {
 
 /* Media Queries para responsividad */
 @media (max-width: 768px) {
-  .video {
+  .video-container{
     max-width: 95%;
-    max-height: 70%;
+    height: auto;
+  }
+
+  .video-desktop {
+    display: none;
+  }
+
+  .video-mobile{
+    display: block;
   }
   
  .reseñas-box {
-    width: 270px; 
-    right: 15px; 
-    bottom: 70px;
-    max-height: 400px; 
+    display: none;
   }
   
-  .reseñas-lista {
-    height: 310px; 
-    padding: 12px; 
-  }
 
   .navbar a {
     padding: 12px 15px;
@@ -150,10 +154,6 @@ footer {
   .navbar a {
     padding: 10px 12px;
     font-size: 12px;
-  }
-  
-  .reseñas-box {
-    display: none;
   }
   
   
