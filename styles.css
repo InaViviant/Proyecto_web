@@ -120,6 +120,8 @@ footer {
   .video-container{
     max-width: 95%;
     height: auto;
+    margin-top: 80px;
+    align-items: center;
   }
 
   .video-desktop {
@@ -127,11 +129,14 @@ footer {
   }
 
   .video-mobile{
-    display: block;
+    display: block !important;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
   }
   
  .reseñas-box {
-    display: none;
+    display: none !important;
   }
   
 
