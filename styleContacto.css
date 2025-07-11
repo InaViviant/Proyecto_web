@@ -1,22 +1,18 @@
+/* Reset y configuración base */
 body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-image: url('./Imagen\ fondo/fondo3.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0;
-    padding: 0;
+    background-color: #121212;
+    color: #fff;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
+/* Navegación */
 .navbar {
     background-color: #278fe4;
     overflow: hidden;
@@ -29,12 +25,14 @@ body {
     padding: 14px 20px;
     text-decoration: none;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .navbar a:hover {
     background-color: #2905f5;
 }
 
+/* Contenedor del formulario */
 .form-container {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 30px;
@@ -56,6 +54,7 @@ body {
     margin-bottom: 15px;
     border: none;
     border-radius: 6px;
+    box-sizing: border-box;
 }
 
 .form-container button {
@@ -73,6 +72,7 @@ body {
     background-color: #2980b9;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
@@ -80,83 +80,112 @@ footer {
     text-align: center;
     font-size: 14px;
     position: fixed;
-    bottom: 0
+    bottom: 0;
+    width: 100%;
+    z-index: 998;
 }
 
- @media (max-width: 768px){
+/* Sección de reseñas */
+.reseñas-box {
+    position: fixed;
+    right: 20px;
+    bottom: 60px;
+    width: 280px;
+    max-height: 400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.reseñas-box h3 {
+    background-color: #222;
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    color: #fff;
+}
+
+.reseñas-lista {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    height: 340px;
+    overflow-y: hidden;
+}
+
+.reseña {
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.reseña.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nombre {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #8fd3ff;
+}
+
+.mensaje {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
     .form-container {
         padding: 20px;
-      }
+        width: 90%;
+        max-width: 350px;
+    }
 
-      .form-container input,
-      .form-container textarea,
-      .form-container button {
+    .form-container input,
+    .form-container textarea,
+    .form-container button {
         font-size: 14px;
         padding: 10px;
- }
+    }
+
+    .reseñas-box {
+        display: none !important;
+    }
+
+    .navbar a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    footer {
+        font-size: 12px;
+        padding: 15px 0;
+    }
 }
 
-  .reseñas-box {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 280px;
-      max-height: 400px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      z-index: 999;
+@media (max-width: 480px) {
+    .navbar {
+        flex-wrap: wrap;
     }
-
-    .reseñas-box h3 {
-      background-color: #222;
-      margin: 0;
-      padding: 10px;
-      font-size: 16px;
-      text-align: center;
-      border-bottom: 1px solid #444;
+    
+    .navbar a {
+        padding: 10px 12px;
+        font-size: 12px;
     }
-
-    .reseñas-lista {
-      list-style: none;
-      margin: 0;
-      padding: 10px;
-      height: 340px;
-      overflow-y: hidden;
+    
+    .form-container {
+        width: 95%;
+        padding: 15px;
     }
-
-    .reseña {
-      background-color: rgba(255,255,255,0.05);
-      margin-bottom: 10px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 14px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-
-    .reseña.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
- 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #121212;
-      color: #fff;
-    }
-
-      .nombre {
-      font-weight: bold;
-      margin-bottom: 4px;
-      color: #8fd3ff;
-    }
-
-    .mensaje {
-      font-size: 13px;
-      line-height: 1.3;
-    }
+}
