@@ -16,77 +16,76 @@
         <a href="./Contacto.html">Contacto</a>
         <a href="./ubicacion.html">Ubicación</a>
     </div>
-<h2 style="text-align: center; color: white; margin-top: 100px;text-shadow: 0 0 10px #000000;">Nuestra Ubicación</h2>
-<h3 style="text-align: center; color: white;margin-top: 10px;text-shadow: 0 0 10px #000000;">Av. Corrientes 345, C1043AAD Cdad. Autónoma de Buenos Aires</h3>
-<div style="display: flex; justify-content: center; margin-top: 40px;">
-    <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d845.0666891857235!2d-58.37076646396921!3d-34.60322218176773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1748215406085!5m2!1ses-419!2sar"
-        width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-</body>
+    
+    <h2 class="titulo-ubicacion">Nuestra Ubicación</h2>
+    <h3 class="direccion-ubicacion">Av. Corrientes 345, C1043AAD Cdad. Autónoma de Buenos Aires</h3>
+    
+    <div class="map-container">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d845.0666891857235!2d-58.37076646396921!3d-34.60322218176773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1748215406085!5m2!1ses-419!2sar"
+            width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
-<div class="reseñas-box">
-    <h3>Reseñas</h3>
-    <ul class="reseñas-lista" id="listaReseñas">
-    </ul>
-</div>
+    <div class="reseñas-box">
+        <h3>Reseñas</h3>
+        <ul class="reseñas-lista" id="listaReseñas">
+        </ul>
+    </div>
 
-<script>
-    const reseñas = [
-        { nombre: "Lucía", mensaje: "¡Excelente atención y muy rápidos!" },
-        { nombre: "Carlos", mensaje: "Todo llegó perfecto, gracias!" },
-        { nombre: "Marta", mensaje: "Me encantó el diseño de la página." },
-        { nombre: "Leo", mensaje: "Muy recomendable, 10/10." },
-        { nombre: "Valeria", mensaje: "Me respondieron enseguida, un lujo." },
-        { nombre: "Julián", mensaje: "Fácil de usar desde el celular." },
-        { nombre: "Noelia", mensaje: "Volveré a comprar sin dudas." },
-        { nombre: "Pablo", mensaje: "Muy profesionales. Felicitaciones." },
-        { nombre: "Florencia", mensaje: "Los recomiendo a todos mis amigos." },
-        { nombre: "Tomás", mensaje: "¡Gracias por todo! Muy satisfecho." },
-        { nombre: "Federico", mensaje: "Siempre tienen los mejores precios!" },
-        { nombre: "Melany", mensaje: "Muy intuitivo todo y completo, me encanta!" },
-        { nombre: "Iñaki", mensaje: "Muy moderna, faltarían más juegos" },
-        { nombre: "Joaquin", mensaje: "Nadie me contestó :c" },
-        { nombre: "Julio", mensaje: "Pude comprar todo lo que quería" },
-        { nombre: "Melina", mensaje: "Todo muy rápido y en orden <3" }
+    <script>
+        const reseñas = [
+            { nombre: "Lucía", mensaje: "¡Excelente atención y muy rápidos!" },
+            { nombre: "Carlos", mensaje: "Todo llegó perfecto, gracias!" },
+            { nombre: "Marta", mensaje: "Me encantó el diseño de la página." },
+            { nombre: "Leo", mensaje: "Muy recomendable, 10/10." },
+            { nombre: "Valeria", mensaje: "Me respondieron enseguida, un lujo." },
+            { nombre: "Julián", mensaje: "Fácil de usar desde el celular." },
+            { nombre: "Noelia", mensaje: "Volveré a comprar sin dudas." },
+            { nombre: "Pablo", mensaje: "Muy profesionales. Felicitaciones." },
+            { nombre: "Florencia", mensaje: "Los recomiendo a todos mis amigos." },
+            { nombre: "Tomás", mensaje: "¡Gracias por todo! Muy satisfecho." },
+            { nombre: "Federico", mensaje: "Siempre tienen los mejores precios!" },
+            { nombre: "Melany", mensaje: "Muy intuitivo todo y completo, me encanta!" },
+            { nombre: "Iñaki", mensaje: "Muy moderna, faltarían más juegos" },
+            { nombre: "Joaquin", mensaje: "Nadie me contestó :c" },
+            { nombre: "Julio", mensaje: "Pude comprar todo lo que quería" },
+            { nombre: "Melina", mensaje: "Todo muy rápido y en orden <3" }
+        ];
 
-    ];
+        let index = 0;
 
-    let index = 0;
+        function agregarReseña() {
+            if (index >= reseñas.length) return;
 
-    function agregarReseña() {
-        if (index >= reseñas.length) return;
+            const lista = document.getElementById("listaReseñas");
+            const nueva = document.createElement("li");
+            nueva.className = "reseña";
+            nueva.innerHTML = `
+                <div class="nombre">${reseñas[index].nombre}</div>
+                <div class="mensaje">${reseñas[index].mensaje}</div>
+            `;
 
-        const lista = document.getElementById("listaReseñas");
-        const nueva = document.createElement("li");
-        nueva.className = "reseña";
-        nueva.innerHTML = `
-      <div class="nombre">${reseñas[index].nombre}</div>
-      <div class="mensaje">${reseñas[index].mensaje}</div>
-    `;
+            lista.appendChild(nueva);
 
-        lista.appendChild(nueva);
+            setTimeout(() => {
+                nueva.classList.add("visible");
+            }, 50);
 
+            if (lista.children.length > 6) {
+                lista.removeChild(lista.children[0]);
+            }
 
-        setTimeout(() => {
-            nueva.classList.add("visible");
-        }, 50);
-
-
-        if (lista.children.length > 6) {
-            lista.removeChild(lista.children[0]);
+            index++;
         }
 
-        index++;
-    }
+        setInterval(agregarReseña, 2000);
+    </script>
 
+    <footer>
+        &copy; 2025 GameHub. Todos los derechos reservados.
+    </footer>
 
-    setInterval(agregarReseña, 2000);
-</script>
-
-<footer>
-    &copy; 2025 GameHub. Todos los derechos reservados.
-</footer>
+</body>
 
 </html>
