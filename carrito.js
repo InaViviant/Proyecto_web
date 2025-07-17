@@ -1,5 +1,6 @@
 // Sistema de carrito de compras
 let totalCarrito = 0;
+let carrito = [];
 
 // Funciones de persistencia
 function guardarCarrito() {
