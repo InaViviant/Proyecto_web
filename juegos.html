@@ -11,54 +11,110 @@
 
 <body>
     <div class="navbar">
-            <a href="./index.html">Inicio</a>
-            <a href="./nosotros.html">Nosotros</a>
-            <a href="./juegos.html">Juegos</a>
-            <a href="./Contacto.html">Contacto</a>
-            <a href="./ubicacion.html">Ubicación</a>
+        <a href="./index.html">Inicio</a>
+        <a href="./nosotros.html">Nosotros</a>
+        <a href="./juegos.html">Juegos</a>
+        <a href="./Contacto.html">Contacto</a>
+        <a href="./ubicacion.html">Ubicación</a>
+    </div>
+
+    <!-- Carrito de compras -->
+    <div class="carrito-container">
+        <div class="carrito-header">
+            <i class="fas fa-shopping-cart carrito-icon"></i>
+            <div class="carrito-title">Carrito</div>
+            <div class="carrito-counter" id="carritoCounter">0</div>
+        </div>
+        
+        <div class="carrito-items" id="carritoItems">
+            <div class="carrito-empty" id="carritoEmpty">Tu carrito está vacío</div>
+        </div>
+        
+        <div class="carrito-total" id="carritoTotal" style="display: none;">
+            <div class="total-text">Total: $<span id="totalAmount">0</span></div>
+        </div>
+        
+        <div class="carrito-actions" id="carritoActions" style="display: none;">
+            <button class="btn-comprar" onclick="comprarCarrito()">
+                <i class="fas fa-credit-card"></i> Comprar
+            </button>
+            <button class="btn-limpiar" onclick="limpiarCarrito()">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
     </div>
 
     <main>
         <div class="galeria">
-            <div class="item">
-                <img src="./proyecto img/black ops 2.png" alt="Imagen 1">
-                <div class="precio">$45.000</div>
+            <div class="item" onclick="agregarAlCarrito('Call of Duty: Black Ops 2', 45000, this)">
+                <img src="./proyecto img/black ops 2.png" alt="Call of Duty: Black Ops 2">
+                <div class="producto-info">
+                    <div class="producto-nombre">Call of Duty: Black Ops 2</div>
+                    <div class="precio">$45.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/csgo.png" alt="Imagen 2">
-                <div class="precio">$20.000</div>
+            <div class="item" onclick="agregarAlCarrito('Counter-Strike: Global Offensive', 20000, this)">
+                <img src="./proyecto img/csgo.png" alt="Counter-Strike: Global Offensive">
+                <div class="producto-info">
+                    <div class="producto-nombre">Counter-Strike: Global Offensive</div>
+                    <div class="precio">$20.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/dayz.png" alt="Imagen 3">
-                <div class="precio">$35.000</div>
+            <div class="item" onclick="agregarAlCarrito('DayZ', 35000, this)">
+                <img src="./proyecto img/dayz.png" alt="DayZ">
+                <div class="producto-info">
+                    <div class="producto-nombre">DayZ</div>
+                    <div class="precio">$35.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/F1.png" alt="Imagen 4">
-                <div class="precio">$40.000</div>
+            <div class="item" onclick="agregarAlCarrito('F1 2024', 40000, this)">
+                <img src="./proyecto img/F1.png" alt="F1 2024">
+                <div class="producto-info">
+                    <div class="producto-nombre">F1 2024</div>
+                    <div class="precio">$40.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/fallout 4.png" alt="Imagen 5">
-                <div class="precio">$29.999</div>
+            <div class="item" onclick="agregarAlCarrito('Fallout 4', 29999, this)">
+                <img src="./proyecto img/fallout 4.png" alt="Fallout 4">
+                <div class="producto-info">
+                    <div class="producto-nombre">Fallout 4</div>
+                    <div class="precio">$29.999</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/FC 25.png" alt="Imagen 6">
-                <div class="precio">$55.000</div>
+            <div class="item" onclick="agregarAlCarrito('EA Sports FC 25', 55000, this)">
+                <img src="./proyecto img/FC 25.png" alt="EA Sports FC 25">
+                <div class="producto-info">
+                    <div class="producto-nombre">EA Sports FC 25</div>
+                    <div class="precio">$55.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/Half life.png" alt="Imagen 7">
-                <div class="precio">$10.000</div>
+            <div class="item" onclick="agregarAlCarrito('Half-Life', 10000, this)">
+                <img src="./proyecto img/Half life.png" alt="Half-Life">
+                <div class="producto-info">
+                    <div class="producto-nombre">Half-Life</div>
+                    <div class="precio">$10.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/outlast 2.png" alt="Imagen 8">
-                <div class="precio">$12.000</div>
+            <div class="item" onclick="agregarAlCarrito('Outlast 2', 12000, this)">
+                <img src="./proyecto img/outlast 2.png" alt="Outlast 2">
+                <div class="producto-info">
+                    <div class="producto-nombre">Outlast 2</div>
+                    <div class="precio">$12.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/pay day 2.png" alt="Imagen 9">
-                <div class="precio">$15.000</div>
+            <div class="item" onclick="agregarAlCarrito('Payday 2', 15000, this)">
+                <img src="./proyecto img/pay day 2.png" alt="Payday 2">
+                <div class="producto-info">
+                    <div class="producto-nombre">Payday 2</div>
+                    <div class="precio">$15.000</div>
+                </div>
             </div>
-            <div class="item">
-                <img src="./proyecto img/resident evil 4.png" alt="Imagen 10">
-                <div class="precio">$30.000</div>
+            <div class="item" onclick="agregarAlCarrito('Resident Evil 4', 30000, this)">
+                <img src="./proyecto img/resident evil 4.png" alt="Resident Evil 4">
+                <div class="producto-info">
+                    <div class="producto-nombre">Resident Evil 4</div>
+                    <div class="precio">$30.000</div>
+                </div>
             </div>
         </div>
     </main>
@@ -68,58 +124,9 @@
         <ul class="reseñas-lista" id="listaReseñas">
         </ul>
     </div>
+<script src="carrito.js"></script>
 
-    <script>
-        const reseñas = [
-            { nombre: "Lucía", mensaje: "¡Excelente atención y muy rápidos!" },
-            { nombre: "Carlos", mensaje: "Todo llegó perfecto, gracias!" },
-            { nombre: "Marta", mensaje: "Me encantó el diseño de la página." },
-            { nombre: "Leo", mensaje: "Muy recomendable, 10/10." },
-            { nombre: "Valeria", mensaje: "Me respondieron enseguida, un lujo." },
-            { nombre: "Julián", mensaje: "Fácil de usar desde el celular." },
-            { nombre: "Noelia", mensaje: "Volveré a comprar sin dudas." },
-            { nombre: "Pablo", mensaje: "Muy profesionales. Felicitaciones." },
-            { nombre: "Florencia", mensaje: "Los recomiendo a todos mis amigos." },
-            { nombre: "Tomás", mensaje: "¡Gracias por todo! Muy satisfecho." },
-            { nombre: "Federico", mensaje: "Siempre tienen los mejores precios!" },
-            { nombre: "Melany", mensaje: "Muy intuitivo todo y completo, me encanta!" },
-            { nombre: "Iñaki", mensaje: "Muy moderna, faltarían más juegos" },
-            { nombre: "Joaquin", mensaje: "Nadie me contestó :c" },
-            { nombre: "Julio", mensaje: "Pude comprar todo lo que quería" },
-            { nombre: "Melina", mensaje: "Todo muy rápido y en orden <3" }
-        ];
-
-        let index = 0;
-
-        function agregarReseña() {
-            if (index >= reseñas.length) return;
-
-            const lista = document.getElementById("listaReseñas");
-            const nueva = document.createElement("li");
-            nueva.className = "reseña";
-            nueva.innerHTML = `
-      <div class="nombre">${reseñas[index].nombre}</div>
-      <div class="mensaje">${reseñas[index].mensaje}</div>
-    `;
-
-            lista.appendChild(nueva);
-
-
-            setTimeout(() => {
-                nueva.classList.add("visible");
-            }, 50);
-
-
-            if (lista.children.length > 6) {
-                lista.removeChild(lista.children[0]);
-            }
-
-            index++;
-        }
-
-
-        setInterval(agregarReseña, 2000);
-    </script>
+<script src="reseñas.js"></script>
 
 </body>
 
