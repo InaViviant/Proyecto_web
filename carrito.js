@@ -1,6 +1,32 @@
-// Sistema de carrito de compras - Versión corregida
-let carrito = [];
+// Sistema de carrito de compras
 let totalCarrito = 0;
+
+// Funciones de persistencia
+function guardarCarrito() {
+    try {
+        localStorage.setItem('gamehub_carrito', JSON.stringify(carrito));
+        localStorage.setItem('gamehub_total', totalCarrito.toString());
+    } catch (error) {
+        console.error('Error al guardar carrito:', error);
+    }
+}
+
+function cargarCarrito() {
+    try {
+        const carritoGuardado = localStorage.getItem('gamehub_carrito');
+        const totalGuardado = localStorage.getItem('gamehub_total');
+        
+        if (carritoGuardado) {
+            carrito = JSON.parse(carritoGuardado);
+            totalCarrito = parseFloat(totalGuardado) || 0;
+            console.log('Carrito cargado:', carrito.length, 'items');
+        }
+    } catch (error) {
+        console.error('Error al cargar carrito:', error);
+        carrito = [];
+        totalCarrito = 0;
+    }
+}
 
 function agregarAlCarrito(nombre, precio, elemento) {
     // Buscar si el producto ya existe en el carrito
@@ -19,10 +45,12 @@ function agregarAlCarrito(nombre, precio, elemento) {
     }
     
     // Animación visual del producto
-    elemento.classList.add('producto-agregado');
-    setTimeout(() => {
-        elemento.classList.remove('producto-agregado');
-    }, 300);
+    if (elemento) {
+        elemento.classList.add('producto-agregado');
+        setTimeout(() => {
+            elemento.classList.remove('producto-agregado');
+        }, 300);
+    }
     
     // Animación del contador
     const carritoCounter = document.getElementById('carritoCounter');
@@ -33,6 +61,7 @@ function agregarAlCarrito(nombre, precio, elemento) {
         }, 400);
     }
     
+    guardarCarrito(); 
     actualizarCarrito();
 }
 
@@ -115,6 +144,7 @@ function cambiarCantidad(nombre, cambio) {
             }, 400);
         }
         
+        guardarCarrito(); 
         actualizarCarrito();
     }
 }
@@ -128,6 +158,10 @@ function limpiarCarrito() {
     // Confirmación antes de limpiar
     if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
         carrito = [];
+        
+        // Limpiar localStorage
+        localStorage.removeItem('gamehub_carrito');
+        localStorage.removeItem('gamehub_total');
         
         // Animación del contador
         const carritoCounter = document.getElementById('carritoCounter');
@@ -165,15 +199,21 @@ function comprarCarrito() {
     mensaje += '\n¡Gracias por tu compra!';
     
     alert(mensaje);
-    limpiarCarrito();
+    
+    // Limpiar carrito después de la compra
+    carrito = [];
+    localStorage.removeItem('gamehub_carrito');
+    localStorage.removeItem('gamehub_total');
+    actualizarCarrito();
 }
 
 // Función para inicializar el carrito al cargar la página
 function inicializarCarrito() {
+    cargarCarrito();
     actualizarCarrito();
 }
 
-// Función para obtener información del carrito (útil para debug)
+// Función para obtener información del carrito 
 function obtenerInfoCarrito() {
     return {
         items: carrito.length,
@@ -216,20 +256,11 @@ function agregarMultiplesUnidades(nombre, precio, cantidad, elemento) {
         }, 400);
     }
     
+    guardarCarrito(); // Guardar después de agregar múltiples
     actualizarCarrito();
 }
 
-// Inicializar el carrito cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    inicializarCarrito();
-});
-
-// Funciones adicionales para manejo de errores
-window.addEventListener('error', function(e) {
-    console.error('Error en el carrito:', e.error);
-});
-
-// Función para exportar el carrito (para futuras mejoras)
+// Función para exportar el carrito 
 function exportarCarrito() {
     if (carrito.length === 0) {
         alert('No hay productos en el carrito para exportar');
@@ -245,3 +276,62 @@ function exportarCarrito() {
     console.log('Datos del carrito:', carritoData);
     return carritoData;
 }
+
+// Función para importar carrito desde datos externos
+function importarCarrito(carritoData) {
+    try {
+        if (carritoData && carritoData.items && Array.isArray(carritoData.items)) {
+            carrito = carritoData.items;
+            totalCarrito = carritoData.total || 0;
+            guardarCarrito();
+            actualizarCarrito();
+            console.log('Carrito importado exitosamente');
+        }
+    } catch (error) {
+        console.error('Error al importar carrito:', error);
+    }
+}
+
+// Función para verificar si hay productos en el carrito
+function tieneProductos() {
+    return carrito.length > 0;
+}
+
+// Función para obtener cantidad total de productos
+function getCantidadTotal() {
+    return carrito.reduce((total, item) => total + item.cantidad, 0);
+}
+
+// Inicializar el carrito cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarCarrito();
+    
+    // Mostrar mensaje de bienvenida si hay productos en el carrito
+    if (carrito.length > 0) {
+        console.log(`Carrito restaurado con ${carrito.length} productos diferentes`);
+    }
+});
+
+// Funciones adicionales para manejo de errores
+window.addEventListener('error', function(e) {
+    console.error('Error en el carrito:', e.error);
+});
+
+// Limpiar carrito automáticamente si está corrupto
+window.addEventListener('beforeunload', function() {
+    // Verificar integridad del carrito antes de cerrar
+    try {
+        JSON.stringify(carrito);
+    } catch (error) {
+        localStorage.removeItem('gamehub_carrito');
+        localStorage.removeItem('gamehub_total');
+    }
+});
+
+// Función para sincronizar entre pestañas
+window.addEventListener('storage', function(e) {
+    if (e.key === 'gamehub_carrito' || e.key === 'gamehub_total') {
+        cargarCarrito();
+        actualizarCarrito();
+    }
+});

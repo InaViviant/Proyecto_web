@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,40 +9,44 @@
 </head>
 
 <body>
-    <div class="navbar">
+    <!-- Heather -->
+    <nav class="navbar">
         <a href="./index.html">Inicio</a>
         <a href="./nosotros.html">Nosotros</a>
         <a href="./juegos.html">Juegos</a>
-        <a href="./Contacto.html">Contacto</a>
+        <a href="./contacto.html">Contacto</a>
         <a href="./ubicacion.html">Ubicación</a>
+    </nav>
+    
+<!-- Video -->
+    <main>
+        <div class="video-container">
+            <video class="video-desktop" controls aria-label="Video promocional GameHub">
+                <source src="./videoInicio/videoDesktop.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            <video class="video-mobile" controls aria-label="Video promocional GameHub">
+                <source src="./videoInicio/videoMobile.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+        </div>
+    </main>
+
+<!-- Caja reseñas -->
+    <div class="reseñas-box">
+        <h3>Reseñas</h3>
+        <ul class="reseñas-lista" id="listaReseñas">
+        </ul>
     </div>
 
-<main>
+<!-- Link reseña -->
+    <script src="reseñas.js"></script>
 
-    <div class="video-container">
-        <video class="video-desktop" controls>
-            <source src="./video inicio/videoDesktop.mp4"
-                type="video/mp4">
-        </video>
-        <video class="video-mobile" controls>
-            <source src="./video inicio/videoMobile.mp4"
-            type="video/mp4">
-        </video>
-    </div>
-
-</main>
+<!-- Footer -->
+    <footer>
+        &copy; 2025 GameHub. Todos los derechos reservados.
+    </footer>
 
 </body>
-
-<div class="reseñas-box">
-    <h3>Reseñas</h3>
-    <ul class="reseñas-lista" id="listaReseñas">
-    </ul>
-</div>
-<script src="reseñas.js"></script>
-<footer>
-    &copy; 2025 GameHub. Todos los derechos reservados.
-</footer>
-
 
 </html>

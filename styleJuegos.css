@@ -1,5 +1,6 @@
+/* Reset y configuración base */
 body {
-    background-image: url('./Imagen\ fondo/fondo4.jpg');
+    background-image: url('./imagenFondo/fondo4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -260,7 +261,7 @@ footer {
     scrollbar-color: #278fe4 rgba(42, 42, 42, 0.8);
 }
 
-/* Scroll personalizado para webkit */
+/* Scroll solo para webkit */
 .carrito-items::-webkit-scrollbar {
     width: 6px;
 }
@@ -433,7 +434,7 @@ footer {
     100% { transform: scale(1); }
 }
 
-/* Media Queries para responsividad */
+/* Media Queries */
 @media (max-width: 768px) {
     .carrito-container {
         right: 10px;
